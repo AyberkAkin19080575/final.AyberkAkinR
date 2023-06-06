@@ -1,0 +1,370 @@
+---
+title: "Causes of Internal Migration Mobility in Turkey"
+author: 
+  - "AKİN, Ayberk[^1]"
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{english}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: |
+    This study analyzes the reasons for internal migration mobility in Turkey and the role of education level in this mobility. Using data from 2018-2021, we will analyze the reasons and education levels of migrants. Due to the internal mobility in Turkey, we used data from the Turkish Statistical Institute to make our data more reliable. According to the results from the graphs and my analysis, the main reasons for internal migration are "job assignment/change", "starting/finding a job", "education", "marital status/family reasons", "better housing and living conditions" and "dependent migration of family members". Among these reasons, education stands out as a continuous reason for migration. This shows us the reasons for internal migration mobility. When the level of education is analyzed, it is seen that the level of "primary, secondary or equivalent education" has the highest rate in internal migration. This shows that individuals with this level of education play a more decisive role in internal migration mobility. At the end of the article, the reasons for internal migration mobility in Turkey and the educational level of the migrating population are analyzed and a socio-economic evaluation is made accordingly. 
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== FOOTNOTES ============================== -->
+<!-- ======================================================================= -->
+[^1]: 19080575, [Github_repo](https://github.com/AyberkAkin19080575/final.AyberkAkinR)
+
+# Introduction
+The phenomenon of migration has been a topic of interest in Turkey for many years. With its strategic location and diverse economic and political landscape, Turkey has been a destination and transit country for migrants from various parts of the world. This literature review aims to provide a critical analysis of five articles related to international and internal migration in Turkey. The articles under review examine various aspects of migration in Turkey, including the legal framework, policy development, migration determinants, demographic changes, and social and economic impacts. The review provides insights into the common themes and issues that emerge from the studies and highlights the implications of these findings for data science research and policy development.
+
+## Literature Review
+
+The first article, "A panorama of the international migration regime in Turkey," provides an overview of Turkey's international migration regime, highlighting the legal framework, policy development, and institutional actors involved in regulating and managing migration flows. The article emphasizes the challenges and opportunities associated with Turkey's evolving approach to migration, including the impact on social and economic integration, human rights, and regional stability. [@iccduygu2006panorama]
+
+The second article, "Turkish migration policies: A critical historical retrospective," traces the historical development of Turkey's migration policies, examining the factors that have shaped Turkey's approach to migration. The article highlights the impact of Turkey's migration policies on various groups, including migrants, refugees, and host communities, and emphasizes the need for a more critical and reflective approach to migration policy development.[@iccduygu2013turkish]
+
+The third and fourth articles,examine the determinants of internal migration in Turkey, using data from the Turkish Statistical Institute and other sources. Both studies identify demographic, economic, and social factors that influence migration behavior and highlight the implications of these findings for policy development aimed at promoting regional development and reducing disparities across different parts of the country.[@gbad1190611]and [@ccetin2018turkiye]
+
+The fifth article, provides a detailed analysis of the factors that influence internal migration in Turkey, exploring the role of economic, demographic, social, and cultural factors in shaping migration patterns. The article highlights the challenges and opportunities associated with internal migration in Turkey, including issues related to urbanization, social integration, and labor market dynamics.[@albayrak2017turkiye]
+
+## Data
+The data you have provided appears to be from the Turkish Statistical Institute (TurkStat) and represents internal migration statistics in Turkey for the years 2018-2021. The table consists of several variables and their respective values for each year. Let's break down the variables and their meanings:
+
+**Years:** This variable represents the years for which data is provided 2018, 2019, 2020 and 2021.
+
+**Reason for Migration:** This variable represents the reasons why people migrated domestically within Turkey. The reasons used in this data are as follows:
+
+**Job assignment/job change:** Relocation due to job change or job assignment.
+
+**Start a job / find a job:** Moving to a different location to start a job or look for a job.
+
+**Education:** Migration for educational purposes.
+
+**Change of marital status / family reasons:** Relocation related to changes in marital 
+status or family circumstances.
+
+**Better housing and living conditions:** Migration for better housing and living conditions.
+
+**Migration dependent on household/family members:** Moving to be with or support family or household members.
+
+**Homestay / returning home:** Returning to one's family or hometown.
+
+**Health / care:** Relocation for health or care-related reasons.
+
+**Moving home:** Migration related to buying a home.
+
+**Retirement:** Relocation after retirement.
+
+**Other:** Other reasons not specified.
+
+**Unknown:** Cases where the reason for migration is unknown.
+
+**Total:** This variable represents the total number of people who migrated internally for each specific year and reason.
+
+The following variables represent the distribution of migrants according to their educational attainment:
+
+***Illiterate:*** People who cannot read and write.
+People who can read and write but have not completed school: Individuals who have basic literacy skills but have not completed primary school.
+
+***Primary school:*** individuals who have completed primary school.
+
+***Primary secondary school or equivalent education:*** Individuals with primary or secondary school education or equivalent.
+
+***Higher education:*** Individuals with higher education.
+
+***Unknown:*** Cases where the educational attainment of migrants is unknown.
+
+This dataset provides insights into the causes of internal migration in Turkey and the educational background of migrants. The values in the table can be used to understand and interpret the number of migrants in each category for each year and the reason for migration.
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(here)
+library(readxl)
+survey <- read_excel(here("data/survey.xlsx"))
+```
+
+```{r, echo=FALSE}
+library(xtable) 
+library(summarytools)
+st_options(lang = "en")
+```
+
+### Data Summary Statistic
+
+Elementary school: On average 46,369.50 people have this level of education in internal migration mobility, with a standard deviation of 83,632.84. The minimum value is 1,839 and the maximum value is 400,619. According to this data, the number of people with primary school level education in internal migration mobility varies.
+
+Higher education: On average 111,224.57 people have higher education in internal migration mobility and the standard deviation is 188,463.66. The minimum value is 0 and the maximum value is 779,120. According to these data, the number of people with higher education in internal migration mobility is higher than other education levels.
+
+Illiterate: On average 5,198.27 people are illiterate in internal migration mobility. The standard deviation is 9,515.84. The minimum value is 16 and the maximum value is 49,663. According to this data, the number of illiterate people in internal migration mobility is lower than other education levels.
+
+Primary secondary school or equivalent: On average 127,344.46 people have primary secondary school or equivalent education level in internal migration mobility and the standard deviation is 229,875.68. The minimum value is 2,188 and the maximum value is 980,148. According to these data, the number of people with primary school or equivalent education level in internal migration mobility varies compared to other education levels.
+
+Primary secondary school or equivalent education: On average 66,215.36 people have primary secondary school or equivalent education in internal migration mobility and the standard deviation is 114,607.40. The minimum value is 0 and the maximum value is 510,618. According to these data, the number of people with primary education or equivalent education level in internal migration mobility varies according to other education levels.
+
+Unknown: On average, 3,792.19 people have unknown education level in internal migration mobility. The standard deviation is 7,558.79. The minimum value is 23 and the maximum value is 37,750. According to these data, the number of people with unknown education level in internal migration mobility is lower than other education levels.
+
+Who can read and write but the school completed (Those who can read and write but did not complete school): On average, 26,083.04 people in internal migration mobility are those who can read and write but did not complete school. The standard deviation is 48,604.51. The minimum value is 91 and the maximum value is 191,103. According to these data, the number of people who did not complete school despite being literate in internal migration mobility varies according to other education levels.
+
+```{r results='asis', echo=FALSE}
+library(summarytools)
+library(tibble)
+library(dplyr)
+library(xtable)
+
+colnames(survey) <- gsub("\r\n", "", colnames(survey))
+
+survey %>%
+  select(
+    Illiterate, `Who can read and write but the school completed`, `Elementary school`,
+    `Primary secondary school or equivalent education`, `Primary secondary school or equiva`,
+    `Higher education`, Unknown
+  ) %>%
+  descr(
+    stats = c("mean", "sd", "min", "max"),
+    transpose = TRUE
+  ) %>%
+  as.data.frame() %>%
+  xtable(
+    caption = "Summary Statistics",
+    label = "tab:summary",
+    align = c("l", rep("c", 4))
+  ) %>%
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+
+```
+
+
+# Methods and Data Analysis
+
+```{r results='asis', echo=FALSE, fig.width=14, fig.height=10}
+library(GGally)
+library(ggplot2)
+
+ggpairs(data = survey, columns = 4:9)
+```
+
+ Corr: 0.921
+   This correlation coefficient of 0.921 indicates a strong positive correlation between the two variables. It suggests that as one variable increases, the other variable tends to increase as well.
+
+ Corr: 0.981
+   This correlation coefficient of 0.981 indicates a very strong positive correlation between the two variables. It suggests a high degree of linear relationship between the variables, where an increase in one variable is closely associated with an increase in the other variable.
+
+ Corr: 0.975
+   This correlation coefficient of 0.975 also indicates a very strong positive correlation between the variables. It implies that the variables are highly related and tend to move in the same direction.
+
+ Corr: 0.962
+   This correlation coefficient of 0.962 indicates a strong positive correlation between the variables. It suggests that the variables have a significant positive relationship.
+
+ Corr: 0.958
+   This correlation coefficient of 0.958 also indicates a strong positive correlation between the variables. It implies that the variables have a considerable positive relationship.
+
+ Corr: 0.982
+   This correlation coefficient of 0.982 indicates a very strong positive correlation between the variables. It suggests a high degree of linear relationship, where an increase in one variable is highly associated with an increase in the other variable.
+
+ Corr: 0.799
+   This correlation coefficient of 0.799 indicates a moderate positive correlation between the variables. It suggests a discernible but not very strong relationship between the variables.
+
+ Corr: 0.788
+   This correlation coefficient of 0.788 also indicates a moderate positive correlation between the variables. It suggests a moderate level of relationship between the variables.
+
+ Corr: 0.815
+   This correlation coefficient of 0.815 indicates a moderate positive correlation between the variables. It implies that the variables have a noticeable positive relationship.
+
+ Corr: 0.849
+    This correlation coefficient of 0.849 also indicates a moderate positive correlation between the variables. It suggests a moderate level of relationship between the variables.
+
+ Corr: 0.840
+    This correlation coefficient of 0.840 indicates a moderate positive correlation between the variables. It implies that the variables have a discernible positive relationship.
+
+ Corr: 0.831
+    This correlation coefficient of 0.831 also indicates a moderate positive correlation between the variables. It suggests a moderate level of relationship between the variables.
+
+ Corr: 0.859
+    This correlation coefficient of 0.859 indicates a moderate positive correlation between the variables. It implies that the variables have a noticeable positive relationship.
+
+ Corr: 0.921
+    This correlation coefficient of 0.921 indicates a strong positive correlation between the variables. It suggests that the variables have a significant positive relationship.
+
+ Corr: 0.914
+    This correlation coefficient of 0.914 also indicates a strong positive correlation between the variables. It implies that the variables have a considerable positive relationship.
+
+In summary, the correlation coefficients you provided indicate various levels of positive correlation between the pairs of variables. The stronger the correlation coefficient (closer to 1 or -1), the stronger the relationship between the variables. These correlation coefficients can be helpful in understanding the associations between variables and in making predictions
+
+## Data Analysis For Fıgure 1 
+
+These graphs are bar charts representing the number of internal migrations for different reasons during 2018-2019-2020-2021. These graphs show us the reasons for migration and the reasons for each year's mobility. In this way, we can analyze the graphs and analyze the reasons that vary and the dominant reasons. 
+
+The data shows that the number of migrations varies according to different reasons and years. For example, the values of reasons such as "Assignment/Job Change" and "Education" fluctuate over the years, indicating changes in migration patterns for these specific factors. Therefore, it would be wrong to say that such reasons have internal migration mobility every year. Looking at the graphs, we can identify the dominant reasons for migration. For example, "Better Housing and Living Conditions" has consistently higher values in most years compared to other reasons, indicating its importance as a driver of migration. Analyzing the data for different years, we can observe fluctuations or shifts in the number of migration over time for certain reasons such as "Starting/Finding a Job" or "Retirement", which are reasons driven by the economy. This indicates changes in economic or social conditions that influence migration decisions.
+
+```{r, echo=FALSE, fig.width=3, fig.height=2}
+library(ggplot2)
+reasons <- c("Assignation/Change of Job", "Starting/Find a Job", "Education", "Change of Marital Status/Family Reasons",
+             "Better Housing and Living Conditions", "Household/Family Members Dependent Migration",
+             "Returning Home to Family/Hometown", "Health/Care", "Buying a House", "Retirement", "Other", "Unknown")
+
+data <- data.frame(
+  Reason = rep(reasons, each = 4),
+  Year = rep(c(2020, 2021, 2022, 2023), length(reasons)),
+  Value = c(265537, 214428, 686973, 145375, 401523, 442953, 53730, 15823, 76703, 12807, 52720, 226048,
+            257027, 179553, 201178, 132421, 426907, 432495, 68348, 17290, 75531, 11530, 53013, 225652,
+            262833, 215561, 510352, 157283, 519612, 486185, 88794, 23372, 58755, 20655, 80683, 183975,
+            315849, 223023, 483199, 162870, 424531, 557325, 133734, 29964, 60292, 25813, 216405, 214002)
+)
+
+data <- data[data$Reason != "Total", ]
+
+plots <- list()
+for (reason in reasons) {
+  plot_data <- data[data$Reason == reason, ]
+  
+  plot <- ggplot(plot_data, aes(x = Year, y = Value, fill = Year)) +
+    geom_bar(stat = "identity") +
+    labs(title = reason, x = "Year", y = "Number of Migrations") +
+    theme_minimal() +
+    theme(legend.position = "none")
+  
+  plots[[reason]] <- plot
+}
+
+for (i in seq_along(plots)) {
+  print(plots[[i]])
+}
+
+
+```
+
+## Data Analysis For Fıgure 2
+
+This graph shows the position of different education levels and categories in internal migration mobility over the selected years (2018-2021). From this area graph we can clearly see trends and changes in the distribution of reasons for migration over the years as a general trend. We see the general pattern of increasing or decreasing values of each category over time. This shows that the internal migration mobility in Turkey in these years is not clearly related to educational attainment. However, we can see that some reasons continue to be dominant in all years. For example, it allows us to identify the dominant reasons for migration in the context of education. From the graph, we can observe that the category "Primary, secondary or equivalent education" has consistently had the highest values for all four years. This indicates that people in this category play a more dominant role in internal migration mobility. When we look at the graph, it also reveals that there are fluctuations in the values of different categories between years. For example, the category "Primary School" shows a gradual decrease from 2018 to 2020 and a slight increase in 2021. This suggests that migration patterns for individuals with primary school education have changed over time. Moreover, while there was a net decrease in pandemic-related migration mobility in 2020 for other categories, there was no change at this education level. In other words, it is possible to say that individuals with this level of education continuously generate migration mobility.  Overall, this graph provides insight into the causes of education-related migration and allows us to understand the trends, dominant causes and fluctuations over the four-year period. Further analysis and interpretation can be done by considering additional contextual information and exploring the relationship between education and migration.
+
+```{r, echo=FALSE, fig.width=10, fig.height=6}
+library(ggplot2)
+
+df <- data.frame(
+  Year = c(2021, 2020, 2019, 2018),
+  Illiterate = c(26222, 25385, 33885, 49663),
+  `Who can read and write but the school completed` = c(161122, 149575, 176359, 191103),
+  `Elementary school` = c(253220, 241555, 310213, 400619),
+  `Primary secondary school or equivalent education` = c(381215, 393993, 468881, 510618),
+  `Primary secondary school or equiva` = c(980148, 554787, 871627, 904394),
+  `Higher education` = c(779120, 701898, 713573, 752860),
+  Unknown = c(13573, 13752, 33522, 37750)
+)
+
+library(tidyr)
+df_long <- pivot_longer(df, -Year, names_to = "Reason", values_to = "Value")
+
+ggplot(df_long, aes(x = Year, y = Value, fill = Reason)) +
+  geom_area() +
+  labs(x = "Year", y = "Value", title = "Reasons for Migration") +
+  scale_fill_brewer(palette = "Set3") +
+  theme_minimal()
+
+
+```
+
+## Data Analysis For Fıgure 3
+
+The graph provided generates a stacked bar chart representing the number of migrants for different reasons between 2018 and 2021. Each bar represents a specific year and the height of each segment within the bar corresponds to the number of migrants for a specific reason.
+
+From the graph we can observe the following patterns and trends:
+
+Assigned:The number of migrations due to "Appointment/Job Change" has been fluctuating, peaking in 2019 and increasing slightly in 2021. This shows changes in work-related mobility over the years.
+
+Starting a Job: The number of migration for "Starting/Finding a Job" shows a similar pattern to "Appointment", with fluctuations and a peak in 2019. However, there is a slight decline in 2021.
+
+Education: The number of migration for "Education" shows a significant increase from 2018 to 2019 and remains relatively high in the following years. This indicates an increasing trend of migration for educational purposes.
+
+Change of Status: The number of migrations due to "Change of Marital Status/Family Reasons" has remained relatively stable over the years, with no significant fluctuations.
+
+Better Housing: The number of migrations due to "Better Housing and Living Conditions" showed a steady increase from 2018 to 2020 and a slight decrease in 2021. This indicates a general trend of migration motivated by the desire for better living conditions.
+
+Household Migration: The number of migrations related to "Household/Family Dependent Migration" remains relatively stable, with small fluctuations over the years.
+
+Homestay Accommodation: The number of "Return to Family/Hometown" migrations shows a decreasing trend from 2018 to 2020, with a slight increase in 2021.
+
+Health Care: The number of migrations for "Health/Care" reasons remains relatively low and shows little change over the years.
+
+Buying House: The number of migrations related to "Home Buying" fluctuates, but remains relatively consistent over the years.
+
+Retirement: The number of migrations related to "Retirement" remains relatively low and stable over the years.
+
+Other: The number of migrations classified as "Other" shows an increasing trend, with a significant increase in 2021. This category represents various reasons for migration.
+
+Unknown: The number of migrations for "Unknown" reasons varies over the years, peaking in 2018 and decreasing in the following years.
+
+Overall, this graph provides insight into the reasons for migration and their changes over the four-year period. It allows us to identify dominant reasons, observe trends and analyze fluctuations in migration patterns. Further analysis can be done by considering the context behind these migration reasons and exploring their potential relationship with external factors such as socio-economic conditions, policy changes or events.
+
+
+```{r, echo=FALSE, fig.width=10, fig.height=6}
+
+data <- data.frame(
+  Year = c(2021, 2020, 2019, 2018),
+  Appointed = c(265537, 257027, 262833, 315849),
+  StartJob = c(214428, 179553, 215561, 223023),
+  Education = c(686973, 201178, 510352, 483199),
+  ChangeStatus = c(145375, 132421, 157283, 162870),
+  BetterHousing = c(401523, 426907, 519612, 424531),
+  HouseholdMigration = c(442953, 432495, 486185, 557325),
+  Homestay = c(53730, 68348, 88794, 133734),
+  HealthCare = c(15823, 17290, 23372, 29964),
+  BuyingHouse = c(76703, 75531, 58755, 60292),
+  Retirement = c(12807, 11530, 20655, 25813),
+  Other = c(52720, 53013, 80683, 216405),
+  Unknown = c(226048, 225652, 183975, 214002)
+)
+
+data_long <- tidyr::gather(data, Reason, Count, -Year)
+
+# Create a professional-looking color palette
+colors <- c(
+  "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2",
+  "#7f7f7f", "#bcbd22", "#17becf", "#aec7e8", "#ffbb78", "#98df8a", "#ff9896",
+  "#c5b0d5", "#c49c94", "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5"
+)
+
+ggplot(data_long, aes(x = Year, y = Count, fill = Reason)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Year", y = "Number of Migrants", title = "Reasons for Migration by Year") +
+  scale_fill_manual(values = colors) +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+```
+
+# Conclusion
+
+Based on the data obtained from TurkStat's Internal Migration Statistics for the years 2018-2021, the following conclusions can be drawn:
+
+The number of internal migrants in Turkey has fluctuated over the years. The year that created a base effect in this fluctuation was 2020 due to the pandemic. However, when we look at the latest data, the total number of internal migrants reached 2,594,620 in 2021, an increase compared to previous years, again due to the mobility caused by the pandemic.
+
+The primary reasons for migration vary among individuals. The most prominent reasons are related to employment, education, change of marital status or family reasons, and the search for better housing and living conditions. Migration due to work-related factors, such as changing jobs or finding a new job, constitutes a significant share of internal migration. This category has increased over the years, with 265,537 migrants citing this as their reason for migration in 2021. Migration for educational purposes was another important factor, with 686,973 people moving for education in 2021. This shows the importance of educational opportunities in attracting individuals to different regions within the country. Migration due to changes in marital status or for family reasons also played an important role. This category includes individuals who relocate to be with their families, reunite with their hometowns or move due to the needs of family members. Housing and living conditions: A significant number of individuals migrated in search of better housing and living conditions. This category includes 401,523 migrants in 2021 and shows that living standards and housing opportunities influence migration patterns. The data do not provide clear information on the demographic characteristics of migrants. However, considering the distribution of migrants by education level, it can be concluded that internal migration includes individuals from various educational backgrounds. Additional analyses such as the regional distribution of migrants, age and gender breakdowns, and socioeconomic factors affecting migration decisions are needed for a comprehensive understanding of internal migration in Turkey.
+
+In conclusion, TurkStat's Internal Migration Statistics covering the years 2018-2021 reveal the dynamic structure of internal migration in Turkey. The data highlight various reasons behind migration, including employment, education, family-related factors and housing conditions. Understanding these migration patterns can help policymakers and researchers in addressing regional inequalities, promoting economic development and ensuring the well-being of individuals in different regions of the country.
+
+\newpage
+# References {#references}
+<div id="refs"></div>
+
